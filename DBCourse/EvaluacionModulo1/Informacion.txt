@@ -1,0 +1,65 @@
+BASE DE DATOS AGENCIA DE TURISMO
+-----------------------------------
+Entidades:
+1.turista
+2.promociones
+3.hotel
+4.destinos
+5.venta
+---------------------------------
+Atributos:
+
+TURISTA
+-id
+-nombre
+-edad
+-genero
+-direccion
+-email
+
+PROMOCIONES
+-id
+-nombre
+-precio
+-fechaInicio
+-fechaFin
+
+HOTEL
+-id
+-nombre
+-direccion
+-imagen
+
+DESTINO
+-id
+-nombre
+-imagen
+-puntaje
+----------------------------
+RELACION
+Entre TURISTA y PROMOCIONES existe una relacion 1:N ya que un turista puede tomar una promo y una promo puede
+tener varios turistas.
+Entre TURISTA y VENTA hay una clave foranea ya que al registrar la venta se usa el id del turista.
+Entre PROMOCIONES y HOTEL existe una relacion N:M ya que varios hoteles pueden entrar en varias promociones. 
+Entre PROMOCIONES y DESTINO existe una relacion 1:N ya que un destino puede tener varias promociones
+pero una promocion solamente puede tener un destino.
+Entre PROMOCIONES y VENTA existe una relacion N:M ya que varias promociones pueden tener variada cantidad de ventas.
+-----------------------------------
+COMANDOS
+//inserte destinos
+INSERT INTO destinos VALUES(6,"Machu Pichu",9,"machu_pichu.png");
+INSERT INTO destinos VALUES(8,"croacia",7,"croacia.png");
+INSERT INTO destinos VALUES(10,"Italia",10,"Italia.png");
+//seleccione el que tenia mas popularidad, mayor a 8
+SELECT nombre FROM destinos WHERE puntaje>8;
+//actualizamos el puntaje de Machu Pichu a 10
+UPDATE destinos SET puntaje=10 WHERE id=6;
+
+//datosde promociones, las fechas en la tabla se muestran como 00/0/0000, no comprendo porque
+INSERT INTO promociones VALUES(2,"dos por uno", 1000, 01/08/2018, 02/18/2018,6,6);
+INSERT INTO promociones VALUES(2,"dos por uno", 1000, 05/08/2018, 02/18/2018,6,6);
+INSERT INTO promociones VALUES(3,"promo facil", 500, 01/01/2017, 10/01/2018,6,8);
+
+//elimino la promocion mas antigua que la fecha del 01/01/2018
+DELETE FROM promociones WHERE id=3; //no me permitio eliminar por el atributo fechaFin porque no era una clave primaria
+
